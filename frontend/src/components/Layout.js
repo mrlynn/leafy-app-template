@@ -1,30 +1,46 @@
 import Header from "./Header";
 import Navigation from "./Navigation";
+import { css } from "@leafygreen-ui/emotion";
 
-let gridStyle = {
-  display: "grid",
-  gridTemplate:
-      `[header-start] "header header" 107px [header-end body-start]
-      "side-nav body" auto [body-end] / auto 1fr`,
-  width: "100vw",
-  maxWidth: "100%",
-  height: "100vh",
-  minWidth: "767px",
-  margin: "0px",
-  backgroundColor: "rgb(255, 255, 255)"
-}
+const gridStyle = css`
+  display: grid;
+  grid-template:
+    [header-start] "header header" 107px [header-end body-start]
+    "side-nav body" auto [body-end] / auto 1fr;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  min-width: 767px;
+  margin: 0px;
+`;
+
+const headerStyle = css`
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+`;
+
+const sideNavStyle = css`
+  grid-area: side-nav;
+`;
+
+const mainStyle = css`
+  grid-area: body;
+`;
 
 export default function Layout(props) {
   return(
-    <div style={gridStyle}>
-      <section style={{gridArea: "header"}}>
+    <div className={gridStyle}>
+      <section className={headerStyle}>
         <Header title="My Demo App"/>
       </section>
-      <section style={{gridArea: "side-nav"}}>
-        <Navigation />
-      </section>
+      <Navigation className={sideNavStyle} />
 
-      <section style={{gridArea: "body"}}>
+      <section className={mainStyle}>
         {props.children}
       </section>
     </div>
