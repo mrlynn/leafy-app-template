@@ -1,24 +1,19 @@
 import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
+import { Link } from "react-router-dom";
 
 export default function Navigation ({ className }) {
   return (
     <SideNav className={className}>
-      <SideNavItem>Overview</SideNavItem>
-      <SideNavItem>Introduction</SideNavItem>
-      <SideNavItem> 
-        Android SDK
-        <SideNavItem>Install MongoDB Community Edition</SideNavItem>
-        <SideNavGroup header="Fundamentals" collapsible>
-          <SideNavItem active>
-            Upgrade MongoDB Community to MongoDB Enterprise
-          </SideNavItem>
-          <SideNavItem>Verify Integrity of MongoDB Packages</SideNavItem>
-          <SideNavGroup header="Preferences">
-            <SideNavItem>Privacy</SideNavItem>
-            <SideNavItem>Security</SideNavItem>
-          </SideNavGroup>
-        </SideNavGroup>
-      </SideNavItem>
+      <SideNavItem as={Link} active to="/">Home</SideNavItem>
+      <SideNavItem as={Link} to="/page1">Page 1</SideNavItem>
+      <SideNavGroup header="Other stuff" collapsible>
+        <SideNavItem >
+          Stuff 1
+        </SideNavItem>
+        <SideNavItem>
+          Stuff 2
+        </SideNavItem>
+      </SideNavGroup>
     </SideNav>
   );
 }

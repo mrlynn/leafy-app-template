@@ -1,6 +1,12 @@
 import Header from "./Header";
 import Navigation from "./Navigation";
-import { css } from "@leafygreen-ui/emotion";
+import { css } from "@leafygreen-ui/emotion";import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import Home from "../pages/Home";
+import Page1 from "../pages/Page1";
 
 const gridStyle = css`
   display: grid;
@@ -30,19 +36,25 @@ const sideNavStyle = css`
 
 const mainStyle = css`
   grid-area: body;
+  padding: 12px;
 `;
 
 export default function Layout(props) {
   return(
-    <div className={gridStyle}>
-      <section className={headerStyle}>
-        <Header title="My Demo App"/>
-      </section>
-      <Navigation className={sideNavStyle} />
+    <Router>
+      <div className={gridStyle}>
+        <section className={headerStyle}>
+          <Header title="My Demo App"/>
+        </section>
+        <Navigation className={sideNavStyle} />
 
-      <section className={mainStyle}>
-        {props.children}
-      </section>
-    </div>
+        <section className={mainStyle}>
+          <Routes>
+            <Route path="/page1" element={<Page1 />} />
+            <Route exact path="/" element={<Home />} />
+          </Routes>
+        </section>
+      </div>
+    </Router>
   )
 }
